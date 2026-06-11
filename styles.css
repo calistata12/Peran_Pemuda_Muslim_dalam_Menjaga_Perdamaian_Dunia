@@ -1,0 +1,654 @@
+/* ============================================================
+   Muslim for Peace — Upgraded CSS
+   Palette: Deep Teal #0D4F4F | Gold #C9A84C | Cream #FAF8F2 | Ink #1A1A2E
+   Typography: Playfair Display (display) + Inter (body) + Amiri (Arabic)
+============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&family=Amiri:wght@400;700&display=swap');
+
+:root {
+  --teal:    #0D4F4F;
+  --teal-mid:#165C5C;
+  --teal-lt: #1E7070;
+  --gold:    #C9A84C;
+  --gold-lt: #E8C97A;
+  --cream:   #FAF8F2;
+  --cream-dk:#F0EDE3;
+  --ink:     #1A1A2E;
+  --slate:   #2F4858;
+  --muted:   #6B7280;
+  --danger:  #C0392B;
+  --success: #1A6B3A;
+  --white:   #FFFFFF;
+  --shadow-sm: 0 2px 8px rgba(13,79,79,.10);
+  --shadow-md: 0 6px 24px rgba(13,79,79,.14);
+  --shadow-lg: 0 16px 48px rgba(13,79,79,.18);
+  --radius:  16px;
+  --radius-sm: 10px;
+  --transition: 0.3s ease;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 50px;
+}
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background-color: var(--cream);
+  color: var(--ink);
+  line-height: 1.7;
+  font-size: 1rem;
+  overflow-x: hidden;
+}
+
+/* ---- Typography ---- */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+p { margin-bottom: 1rem; }
+p:last-child { margin-bottom: 0; }
+
+a { color: var(--teal); text-decoration: none; }
+a:hover { color: var(--gold); }
+
+img, svg { vertical-align: middle; max-width: 100%; }
+
+/* ---- Utility ---- */
+.text-center { text-align: center; }
+.text-muted  { color: var(--muted) !important; }
+.text-white  { color: var(--white) !important; }
+
+/* ---- Shared Layout ---- */
+.container {
+  width: 100%;
+  max-width: 1100px;
+  padding: 0 1.25rem;
+  margin: 0 auto;
+}
+
+.page-section { padding: 5rem 0; }
+@media (min-width: 768px) { .page-section { padding: 7rem 0; } }
+
+.section-label {
+  display: inline-block;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.75rem;
+}
+
+.section-heading {
+  font-size: clamp(1.75rem, 4vw, 2.75rem);
+  color: var(--teal);
+  margin-bottom: 0.75rem;
+}
+
+.section-subheading {
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--muted);
+  max-width: 600px;
+  margin: 0 auto 3.5rem auto;
+  line-height: 1.6;
+}
+
+/* ============================================================
+   NAVBAR
+============================================================ */
+#mainNav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  padding: 1.1rem 0;
+  background: transparent;
+  transition: background var(--transition), padding var(--transition), box-shadow var(--transition);
+}
+
+#mainNav.navbar-shrink {
+  background: var(--teal) !important;
+  padding: 0.65rem 0;
+  box-shadow: 0 2px 16px rgba(0,0,0,.25);
+}
+
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.navbar-brand {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--gold) !important;
+  letter-spacing: .03em;
+  white-space: nowrap;
+}
+
+.navbar-toggler {
+  display: none;
+  background: none;
+  border: 2px solid rgba(255,255,255,.5);
+  border-radius: 8px;
+  color: white;
+  padding: 0.4rem 0.7rem;
+  font-size: 0.8rem;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  letter-spacing: .05em;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: border-color var(--transition);
+}
+.navbar-toggler:hover { border-color: var(--gold); color: var(--gold); }
+
+.navbar-nav {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  gap: 0.25rem;
+}
+
+.nav-link {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.825rem;
+  font-weight: 500;
+  color: rgba(255,255,255,.88) !important;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  padding: 0.45rem 0.75rem;
+  border-radius: 6px;
+  transition: color var(--transition), background var(--transition);
+}
+.nav-link:hover, .nav-link.active {
+  color: var(--gold) !important;
+  background: rgba(201,168,76,.12);
+}
+
+@media (max-width: 991px) {
+  .navbar-toggler { display: inline-flex; align-items: center; gap: 0.4rem; }
+  .navbar-collapse {
+    display: none;
+    position: absolute;
+    top: 100%; left: 0; right: 0;
+    background: var(--teal);
+    padding: 1rem 1.25rem 1.5rem;
+    border-top: 1px solid rgba(255,255,255,.1);
+  }
+  .navbar-collapse.show { display: block; }
+  .navbar-nav {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.15rem;
+  }
+  .nav-link { width: 100%; padding: 0.6rem 0.75rem; }
+}
+
+/* ============================================================
+   HERO / MASTHEAD
+============================================================ */
+header.masthead {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--white);
+  background-image: url("img/earth.jpg");
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+}
+
+
+.masthead-content {
+  position: relative;
+  z-index: 1;
+  max-width: 820px;
+  padding: 8rem 1.25rem 5rem;
+}
+
+.masthead-ornament {
+  width: 48px; height: 2px;
+  background: var(--gold);
+  margin: 0 auto 1.5rem;
+  position: relative;
+}
+.masthead-ornament::before, .masthead-ornament::after {
+  content: '';
+  position: absolute;
+  top: 50%; transform: translateY(-50%);
+  width: 6px; height: 6px;
+  background: var(--gold);
+  border-radius: 50%;
+}
+.masthead-ornament::before { left: -10px; }
+.masthead-ornament::after  { right: -10px; }
+
+.masthead-subheading {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+  font-style: italic;
+  color: rgba(255,255,255,.82);
+  margin-bottom: 1.25rem;
+  letter-spacing: .02em;
+}
+
+.masthead-heading {
+  font-size: clamp(2rem, 6vw, 3.75rem);
+  font-weight: 700;
+  line-height: 1.15;
+  margin-bottom: 2rem;
+  text-shadow: 0 2px 12px rgba(0,0,0,.25);
+}
+
+.masthead-heading span { color: var(--gold-lt); }
+
+.btn-hero {
+  display: inline-block;
+  background: var(--gold);
+  color: var(--ink) !important;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  padding: 0.9rem 2.25rem;
+  border-radius: 50px;
+  text-decoration: none;
+  transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+  box-shadow: 0 6px 20px rgba(201,168,76,.4);
+}
+.btn-hero:hover {
+  background: var(--gold-lt);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(201,168,76,.5);
+}
+
+/* Scroll indicator */
+.scroll-indicator {
+  position: absolute;
+  bottom: 2rem; left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+  display: flex; flex-direction: column;
+  align-items: center; gap: 0.4rem;
+}
+.scroll-indicator span {
+  font-size: 0.7rem; letter-spacing: .12em;
+  text-transform: uppercase; color: rgba(255,255,255,.5);
+}
+.scroll-dot {
+  width: 20px; height: 32px;
+  border: 2px solid rgba(255,255,255,.35);
+  border-radius: 12px;
+  position: relative;
+}
+.scroll-dot::after {
+  content: '';
+  position: absolute;
+  top: 4px; left: 50%; transform: translateX(-50%);
+  width: 4px; height: 6px;
+  background: var(--gold);
+  border-radius: 2px;
+  animation: scrollDot 1.8s ease-in-out infinite;
+}
+@keyframes scrollDot { 0%,100%{top:4px;opacity:1} 60%{top:16px;opacity:.3} }
+
+/* ============================================================
+   PENGERTIAN
+============================================================ */
+#pengertian { background: var(--cream); }
+
+.cards-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.pengertian-card {
+  background: var(--teal);
+  color: var(--white);
+  padding: 2.5rem 2rem;
+  border-radius: var(--radius);
+  text-align: center;
+  box-shadow: var(--shadow-md);
+  transition: transform var(--transition), box-shadow var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+.pengertian-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+}
+
+.card-icon {
+  width: 64px; height: 64px;
+  background: rgba(201,168,76,.2);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 1.25rem;
+  font-size: 1.75rem;
+  color: var(--gold-lt);
+}
+
+.pengertian-card h4 {
+  font-size: 1.2rem;
+  color: var(--gold-lt);
+  margin-bottom: 0.75rem;
+}
+.pengertian-card p {
+  color: rgba(255,255,255,.88);
+  font-size: 0.925rem;
+  line-height: 1.75;
+}
+
+/* ============================================================
+   LANDASAN
+============================================================ */
+#landasan {
+  background: linear-gradient(135deg, var(--teal) 0%, var(--slate) 100%);
+}
+
+#landasan .section-heading { color: var(--white); }
+#landasan .section-subheading { color: rgba(255,255,255,.7); }
+
+.landasan-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.landasan-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 2.25rem 2rem;
+  box-shadow: var(--shadow-md);
+  position: relative;
+  overflow: hidden;
+  transition: transform var(--transition);
+}
+
+.landasan-card:hover { transform: translateY(-4px);
+ }
+
+.quran-badge {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: var(--teal);
+  color: var(--gold-lt);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  padding: 0.35rem 0.85rem;
+  border-radius: 50px;
+  margin-bottom: 1.25rem;
+}
+
+.landasan-card h4 {
+  font-size: 1.05rem;
+  color: var(--teal);
+  margin-bottom: 1rem;
+}
+
+.ayat-arab {
+  font-family: 'Amiri', 'Traditional Arabic', serif;
+  font-size: 1.65rem;
+  line-height: 2.1;
+  text-align: right;
+  direction: rtl;
+  color: var(--ink);
+  background: var(--cream);
+  padding: 1rem 1.25rem;
+  border-radius: var(--radius-sm);
+  margin-bottom: 1rem;
+  border-right: 4px solid var(--gold);
+}
+
+.landasan-card p { font-size: 0.9rem; color: var(--muted); }
+.landasan-card strong { color: var(--ink); }
+
+/* ============================================================
+   PERAN
+============================================================ */
+.peran-item{
+    display:flex;
+    margin-bottom:30px;
+    border-radius:25px;
+    overflow:hidden;
+    background:white;
+    box-shadow:0 5px 15px rgba(0,0,0,0.08);
+}
+
+.peran-number{
+    width:120px;
+    background:#0f5c5c;
+    color:#d8b15b;
+    font-size:2rem;
+    font-weight:bold;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.peran-content{
+    flex:1;
+    padding:30px;
+}
+
+.peran-content h4{
+    margin-bottom:15px;
+}
+
+/* ============================================================
+   TANTANGAN
+============================================================ */
+#tantangan { background: var(--cream); }
+
+.tantangan-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+
+.tantangan-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 2rem 1.75rem;
+  box-shadow: var(--shadow-sm);
+  text-align: center;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+.tantangan-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md);
+}
+
+.tantangan-icon {
+  width: 56px; height: 56px;
+  background: rgba(192,57,43,.1);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 1rem;
+  font-size: 1.4rem;
+  color: var(--danger);
+}
+
+.tantangan-card h4 {
+  font-size: 1rem;
+  color: var(--ink);
+  margin-bottom: 0.6rem;
+}
+.tantangan-card p { font-size: 0.875rem; color: var(--muted); }
+
+/* ============================================================
+   SOLUSI
+============================================================ */
+#solusi {
+  background: linear-gradient(135deg, var(--teal) 0%, var(--teal-mid) 100%);
+}
+
+#solusi .section-heading { color: var(--white); }
+#solusi .section-subheading { color: rgba(255,255,255,.72); }
+
+.solusi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.25rem;
+}
+
+.solusi-card {
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.15);
+  border-radius: var(--radius);
+  padding: 2rem 1.5rem;
+  text-align: center;
+  color: var(--white);
+  backdrop-filter: blur(4px);
+  transition: background var(--transition), transform var(--transition);
+}
+.solusi-card:hover {
+  background: rgba(255,255,255,.16);
+  transform: translateY(-4px);
+}
+
+.solusi-icon {
+  width: 56px; height: 56px;
+  background: rgba(201,168,76,.2);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 1rem;
+  font-size: 1.4rem;
+  color: var(--gold-lt);
+}
+
+.solusi-card h4 {
+  font-size: 1rem;
+  color: var(--gold-lt);
+  margin-bottom: 0.6rem;
+}
+.solusi-card p { font-size: 0.875rem; color: rgba(255,255,255,.8); }
+
+/* ============================================================
+   KESIMPULAN
+============================================================ */
+#kesimpulan { background: var(--cream-dk); }
+
+.kesimpulan-box {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 3rem 2.5rem;
+  box-shadow: var(--shadow-md);
+  max-width: 780px;
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+}
+
+.kesimpulan-text {
+  font-size: 1rem;
+  color: var(--muted);
+  line-height: 1.85;
+  margin-bottom: 2rem;
+}
+
+.ayat-highlight {
+  background: var(--teal);
+  color: var(--white);
+  border-radius: var(--radius-sm);
+  padding: 1.5rem 2rem;
+  font-style: italic;
+  position: relative;
+}
+.ayat-highlight p { color: rgba(255,255,255,.9); font-size: 1.1rem; margin-bottom: 0.4rem; }
+.ayat-highlight cite {
+  font-style: normal;
+  font-size: 0.8rem;
+  color: var(--gold-lt);
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+/* ============================================================
+   REFERENSI
+============================================================ */
+#referensi { background: var(--cream); }
+
+.referensi-list {
+  list-style: none;
+  padding: 0; margin: 0;
+  max-width: 680px;
+  margin: 0 auto;
+}
+.referensi-list li {
+  display: flex; align-items: flex-start; gap: 0.75rem;
+  padding: 0.9rem 1rem;
+  border-bottom: 1px solid var(--cream-dk);
+  color: var(--muted);
+  font-size: 0.9rem;
+  transition: background var(--transition);
+}
+.referensi-list li:last-child { border-bottom: none; }
+.referensi-list li:hover { background: var(--cream-dk); border-radius: var(--radius-sm); }
+.referensi-list li::before {
+  content: '◆';
+  color: var(--gold);
+  font-size: 0.55rem;
+  margin-top: 0.4rem;
+  flex-shrink: 0;
+}
+
+/* ============================================================
+   FOOTER
+============================================================ */
+footer {
+  background: var(--ink);
+  color: rgba(255,255,255,.8);
+  text-align: center;
+  padding: 3.5rem 1.25rem;
+}
+
+.footer-brand {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  color: var(--gold);
+  margin-bottom: 0.75rem;
+}
+
+footer p {
+  max-width: 580px;
+  margin: 0 auto 0.5rem;
+  font-size: 0.875rem;
+  color: rgba(255,255,255,.6);
+}
+
+.footer-divider {
+  width: 64px; height: 1px;
+  background: rgba(255,255,255,.15);
+  margin: 1.5rem auto;
+}
+
+footer small { color: rgba(255,255,255,.35); font-size: 0.775rem; }
+
+/* ============================================================
+   REDUCED MOTION
+============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}
